@@ -1,0 +1,9 @@
+<div class="paging">
+    <div class="paging clearfix">
+    <div class="row">
+    {if="$previous_page_url"} <div class="col-xs-3 col-sm-2 text-left"><a href="{$previous_page_url}" id="paging_older" title="Plus anciens"><i class="fa fa-fw fa-lg fa-arrow-left"></i></a></div> {/if}
+    <div class="paging-current col-xs-6 col-sm-8 text-center"><span class="hidden-xs">page</span> {$page_current} / {$page_max} </div>
+    {if="$next_page_url"} <div class="col-xs-3 col-sm-2 text-right"><a href="{$next_page_url}" id="paging_newer" title="Plus récents"><i class="fa fa-fw fa-lg fa-arrow-right"></i></a></div> {/if}
+    </div>
+    </div>
+</div>

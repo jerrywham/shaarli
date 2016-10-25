@@ -1,0 +1,29 @@
+<a href="#recovery" data-toggle="modal" class="list-group-item">
+  <h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-envelope-o pull-left"></i>{'Change email'|t}</h2>
+  <p class="list-group-item-text">{'Change your recovery email'|t}</p>
+</a>
+
+<div class="modal fade" id="recovery" tabindex="-1" role="dialog" aria-labelledby="recoveryLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="POST" action="?do=tools" name="configform" id="configform">
+        <input type="hidden" name="token" value="{$token}">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">{'Close'|t}</span></button>
+          <h1>{'Change email'|t}</h1>
+        </div>
+        <div class="modal-body">
+          <div class="form-group clearfix">
+            <label class="col-sm-3" for="email">{'Email'|t}</label>
+            <div class="col-sm-9">
+              <input type="email" class="form-control" name="email" id="email" value="" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer text-right">
+          <input type="submit" name="saveEmail" value="{'Save config'|t}" class="btn btn-success">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

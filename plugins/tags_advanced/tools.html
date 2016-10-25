@@ -1,0 +1,51 @@
+<div class="modal fade" id="tagsAdvanced" tabindex="-1" role="dialog" aria-labelledby="tagsAdvancedLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form method="POST" action="plugins/tags_advanced/configure.php" name="config-ta" id="config-ta">
+        <input type="hidden" name="token" value="{$token}">
+        <input type="hidden" value="{$ta-count}" name="ta-count" id="ta_count">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">{'Close'|t}</span></button>
+          <h1>{'Tags advanced'|t}</h1>
+        </div>
+        <div class="modal-body">
+          <div class="form-group clearfix">
+            <div class="alert alert-info">
+              <p>
+                {'To view the special tags on the home page, select the checkbox marked with '|t}
+                <i class="fa fa-fw fa-lg fa-map-pin"></i><span class="sr-only">{'Pined?'|t}</span>.
+                {'The same thing with '|t}
+                <i class="fa fa-fw fa-lg fa-key text-warning"></i><span class="sr-only">{'Private?'|t}</span>
+                {'to keep the tags visible only when you are connected.'|t}
+              </p>
+              <p>{'Filters '|t}
+                <i class="fa fa-fw fa-lg fa-filter"></i>
+                {' are optional.'|t}
+                {'They allow you to add tags to your links automatically according to the <a href="https://en.wikipedia.org/wiki/Regular_expression">pattern</a> found in the <abbr>URL</abbr>.'|t}
+              </p>
+            </div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col"><span class="sr-only">{'Order'|t}</span></th>
+                <th scope="col">{'Name'|t}</th>
+                <th scope="col" class="text-center hidden">{'Icon'|t}</th><!-- Class FontAwesome + color frama.css -->
+                <th scope="col"><i class="fa fa-fw fa-lg fa-filter"></i>{'Filter'|t}</th>
+                <th scope="col" class="text-center"><i class="fa fa-fw fa-lg fa-map-pin"></i><span class="sr-only">{'Pined?'|t}</span></th>
+                <th scope="col" class="text-center"><i class="fa fa-fw fa-lg fa-key text-warning"></i><span class="sr-only">{'Private?'|t}</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              {taListForm}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer text-right">
+          <button type="button" class="btn btn-default" id="addTag"><i class="fa fa-fw fa-lg fa-plus text-success"></i> {'Add tag'|t}</button>
+          <button type="submit" class="btn btn-success" id="saveTags" name="saveTags" value="">{'Save'|t}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

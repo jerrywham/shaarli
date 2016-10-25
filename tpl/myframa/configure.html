@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body onload="document.configform.title.focus();">
+<div id="pageheader">
+	{include="page.header"}
+</div>
+<div class="container">
+{$timezone_js}
+  <div class="row">
+    <h2 class="h4"><i class="fa fa-fw fa-lg fa-cogs"></i>Configuration</h2>
+    <div class="col-sm-12 col-md-12 ombre">
+        <form method="POST" action="#" name="configform" id="configform">
+    	<input type="hidden" name="token" value="{$token}">
+        <br/>
+        <fieldset>
+            <legend>General</legend>
+            <label class="col-sm-3 control-label" for="title">Page title:</label>
+            <div class="col-sm-9">
+                <input type="text" name="title" id="title" size="50" value="{$title}" class="form-control">
+            </div>
+            <br/>
+            <br/>
+            <label class="col-sm-3 control-label" for="titleLink">Title link:</label> 
+            <div class="col-sm-9">
+                <input type="text" name="titleLink" id="titleLink" size="50" value="{$titleLink}" class="form-control">
+                <p class="help-block text-right">(default value is: ?)</p>
+            </div>
+        </fieldset>
+        <br/>
+        <fieldset>
+            <legend>Timezone:</legend>
+            <div class="col-sm-9 col-sm-offset-3">{$timezone_form}</div>
+        </fieldset>
+        <br/>
+        <fieldset>
+            <legend>Privacy</legend>
+            <label class="col-sm-3 control-label" for="redirector">Redirector:</label> 
+            <div class="col-sm-9">
+                <input type="text" name="redirector" id="redirector" size="50" value="{$redirector}" class="form-control">
+                <p class="help-block text-right">(e.g. <i>http://anonym.to/?</i> will mask the HTTP_REFERER)</p>
+            </div>
+            <br/>
+            <br/>
+            <label class="col-sm-9 col-sm-offset-3" for="privateLinkByDefault">
+                <input type="checkbox" name="privateLinkByDefault" id="privateLinkByDefault" {if="!empty($GLOBALS['privateLinkByDefault'])"}checked{/if}/>
+                All new links are private by default
+            </label>
+            <label class="col-sm-9 col-sm-offset-3" for="hidePublicLinks"> 
+            <input type="checkbox" name="hidePublicLinks" id="hidePublicLinks" {if="!empty($GLOBALS['config']['HIDE_PUBLIC_LINKS'])"}checked{/if}/>
+            Hide public links
+            </label>
+            <p class="help-block col-sm-9 col-sm-offset-3 text-right">Do not show any links if the user is not logged in.</p>
+            <br/>
+        </fieldset>
+        <fieldset>
+            <legend>Options</legend>
+            <label class="col-sm-9 col-sm-offset-3" for="enableRssPermalinks"> 
+                <input type="checkbox" name="enableRssPermalinks" id="enableRssPermalinks" {if="!empty($GLOBALS['config']['ENABLE_RSS_PERMALINKS'])"}checked{/if}/>
+                RSS direct links
+            </label>
+            <p class="help-block col-sm-9 col-sm-offset-3 text-right">Disable it to use permalinks in RSS feed instead of direct links to your shaared links. Currently <b>{if="$GLOBALS['config']['ENABLE_RSS_PERMALINKS']"}enabled{else}disabled{/if}.</b></p>
+
+            <label class="col-sm-9 col-sm-offset-3" for="updateCheck"> 
+                <input type="checkbox" name="updateCheck" id="updateCheck" {if="!empty($GLOBALS['config']['ENABLE_UPDATECHECK'])"}checked{/if}/>
+                Update
+            </label>
+            <p class="help-block col-sm-9 col-sm-offset-3 text-right">Notify me when a new release is ready</p>
+            <br/>
+        </fieldset>
+        <fieldset>
+            <legend>Security</legend>
+            <label class="col-sm-9 col-sm-offset-3" for="disablesessionprotection">
+                <input type="checkbox" name="disablesessionprotection" id="disablesessionprotection" {if="!empty($GLOBALS['disablesessionprotection'])"}checked{/if}/>
+                Disable session cookie hijacking protection
+            </label>
+                <p class="help-block col-sm-9 col-sm-offset-3 text-right">(Check this if you get disconnected often or if your IP address changes often.)</p>
+            <br/>
+        </fieldset>
+        <br/>
+        <p class="text-right"><input type="submit" name="Save" value="Save config" class="btn btn-success"></p>
+        <br/>
+    	</form>
+    </div>
+    </div>
+</div>
+{include="page.footer"}
+</body>
+</html>

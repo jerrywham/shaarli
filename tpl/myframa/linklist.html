@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../inc/awesomplete.css" />
+    {include="includes"}
+</head>
+<body>
+<div id="pageheader">
+    {include="page.header"}
+   
+    <p class="help-block" style="width:250px;margin-left:50px;">
+      {if="!empty($linkcount)"}{$linkcount} links{/if}&nbsp;
+      {if="!empty($privateLinkcount)"}/ {$privateLinkcount} private links{/if}
+    </p>
+
+<div class="row">
+  <div class="container">
+     
+  </div>
+</div>
+
+    <div class="row" style="width:100%">
+        <div class="container">
+    
+        {loop="$plugins_header.fields_toolbar"}
+            {$value}
+        {/loop}
+    
+        </div>
+    </div>
+</div>
+<div id="linklist" class="container">
+
+    <div id="plugin_zone_start_linklist" class="plugin_zone">
+        {loop="$plugin_start_zone"}
+            {$value}
+        {/loop}
+    </div>
+
+    <div class="col-md-9">
+
+        {include="linklist.paging"}
+        <br/>
+        <h2 class="h4"><i class="fa fa-fw fa-lg fa-link"></i> Liste des liens {if="isLoggedIn()"}
+            <span id="paging_privatelinks">
+                <a href="?privateonly">
+                {if="$privateonly"}
+                <img src="images/private_16x16_active.png#" width="16" height="16" title="Click to see all links" alt="Click to see all links">
+                {else}
+                <img src="images/private_16x16.png#" width="16" height="16" title="Click to see only private links" alt="Click to see only private links">
+                {/if}
+                </a>
+            </span>
+        {/if}</h2>
+
+        {if="count($links)==0"}
+            <div id="searchcriteria" class="link-outer ombre">
+                <div class="link-inner">
+                    <div class="link-content clearfix">
+                        <div>
+                        <div class="link-description nothing-found">
+                            Nothing found.
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {elseif="!empty($search_term) or !empty($search_tags)"}
+            <div id="searchcriteria" class="link-outer ombre">
+                <div class="link-inner">
+                    <div class="link-content clearfix">
+                        <div>
+                        <div class="link-description">
+                {$result_count} results
+                {if="!empty($search_term)"}
+                    for <em>{$search_term}</em>
+                {/if}
+                {if="!empty($search_tags)"}
+                    {$exploded_tags=explode(' ', $search_tags)}
+                    tagged
+                    {loop="$exploded_tags"}
+                        <span class="linktag" title="Remove tag">
+                            <a href="?removetag={function="urlencode($value)"}">{$value} <span class="remove">x</span></a>
+                        </span>
+                    {/loop}
+                {/if}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
+
+        {loop="links"}
+                {if="thumbnail($value.url)!=false"}<div class="thumbnail">{$value.url|thumbnail}</div>{/if}
+ 
+                {if="isLoggedIn()"}
+                    <div class="link-actions">
+                        <form method="GET" class="buttoneditform">
+                            <input type="hidden" name="edit_link" value="{$value.linkdate}">
+                            <button type="submit" title="Modifier" class="btn btn-link btn-xs"><i class="fa fa-fw fa-lg fa-pencil"></i><span class="sr-only">Modifier</span></button>
+                        </form><br>
+                        <form method="POST" class="buttoneditform">
+                            <input type="hidden" name="lf_linkdate" value="{$value.linkdate}">
+                            <input type="hidden" name="token" value="{$token}">
+                            <input type="hidden" name="delete_link">
+                            <button type="submit" title="Supprimer" class="btn btn-link btn-xs" onClick="return confirmDeleteLink();"><i class="fa fa-fw fa-lg fa-trash text-danger"></i><span class="sr-only">Supprimer</span></button>
+                        </form>
+                    </div>
+                {/if}
+                <div id="{$value.shorturl}" class="link-outer ombre {if="$value.class"}{$value.class}{/if}">
+                    <div class="link-inner">
+                        <div class="link-header">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <a class="link-title" href="{$value.real_url}" onclick="window.open(this.href);return false;" rel="noopener noreferrer">{$value.title}</a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="link-date">
+                                    {if="!$GLOBALS['config']['HIDE_TIMESTAMPS'] || isLoggedIn()"}
+                                        <span class="link-actual-date" title="Permalink"><a href="?{$value.linkdate|smallHash}">{function="strftime('%c', $value.timestamp)"} - permalink</a> - </span>
+                                    {else}
+                                        <span class="link-actual-date" title="Short link here"><a href="?{$value.shorturl}">permalink</a> - </span>
+                                    {/if}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="link-content clearfix">
+                            <div>
+                                {if="$value.description"}<div id="ldesc_{$value.linkdate}" class="link-description">{$value.description}</div>{/if}
+                            </div>
+                        </div>
+                        <div class="link-footer">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                {if="$value.tags"}
+                                    <div class="link-tag-list">
+                                    {loop="value.taglist"}<span class="link-tag" title="Add tag"><a href="?addtag={$value|urlencode}">{$value}</a></span> {/loop}
+                                    </div>
+                                {/if}
+                                </div>
+                                <div class="col-sm-6 link-url-container">
+                                {loop="$value.link_plugin"}
+                                    <span class="link-plugin">{$value}</span> -
+                                {/loop}
+
+                                    <a href="{$value.real_url}" class="link-url"><span title="Short link">{$value.url}</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {if="$value.description"}
+            <script>
+             $(function() {
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{pic <a href="/g,'<img style="display:block;max-width:50%;margin:15px 0 0 5px;height:auto" src="'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{pic. <a href="/g,'<img style="display:block;max-width:50%;float:right;margin:15px 0 0 5px;height:auto" src="'));          
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/pic}/g,'<br>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{3/g,'<h3>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/3}/g,'</h3>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{2/g,'<h2>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/2}/g,'</h2>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{1/g,'<h1>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/1}/g,'</h1>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{6/g,'<h6>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/6}/g,'</h6>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{5/g,'<h5>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/5}/g,'</h5>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{4/g,'<h4>')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/4}/g,'</h4>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{i/g,'<span style="font-style:italic">')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/i}/g,'</span>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{lt/g,'<span style="text-decoration:line-through">')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/lt}/g,'</span>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{s/g,'<span style="font-weight: bold;font-size:1.15em">')); 
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/s}/g,'</span>')); 
+               //$('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{m/g,'<small>')); 
+               //$('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/m}/g,'</small>'));                       
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{audio <a href="/g,'<audio style="margin:6 0 3 2" controls><source src="'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{video <a href="/g,'<video type="video/mp4" style="margin:6 10 3 2;max-width:66%;height:auto" controls><source src="'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/video}/g,'</video>'));
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/audio}/g,'</audio>')); 
+                           
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/{code/g,'<pre class="line-numbers"><code class="language-php" id="code_{$value.linkdate}" data-language="php">'));           
+               $('#ldesc_{$value.linkdate}').html($('#ldesc_{$value.linkdate}').html().replace(/code}/g,'</code></pre>'));                         
+               });
+            </script>
+            {/if}
+    {/loop}
+    {include="linklist.paging"}
+
+    </div>
+
+    <div id="plugin_zone_end_linklist" class="plugin_zone col-md-3">
+    <br/>
+    <br/>
+    <h2 class="h4"><i class="fa fa-fw fa-lg fa-tags"></i> Tags</h2>
+        <div class="ombre">
+            <form method="GET" class="tagfilter" name="tagfilter">
+                <div class="input-group input-group-sm">
+                    <input type="text" tabindex="2" name="searchtags" id="tagfilter_value" placeholder="Filter by tag"
+                        
+                        autocomplete="off" class="awesomplete form-control" data-multiple data-autofirst data-minChars="1"
+                        data-list="{loop="$tags"}{$key}, {/loop}"
+                    >
+                    <span class="input-group-btn">
+                        <button type="submit" value="Rechercher" class="btn btn-default" title="Search">
+                            <i class="fa fa-fw fa-lg fa-search"></i><span class="sr-only">Search</span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        {loop="$plugin_end_zone"}
+            {$value}
+        {/loop}
+
+            <p class="text-right"><a href="?do=tagcloud">Tags cloud</a></p>
+        </div>
+    </div>
+</div>
+    {include="page.footer"}
+<script src="inc/awesomplete.min.js#"></script>
+<script src="inc/awesomplete-multiple-tags.js#"></script>
+<script>
+    awesompleteUniqueTag('#tagfilter_value');
+</script>
+</body>
+</html>

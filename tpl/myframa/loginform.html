@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body
+{if="ban_canLogin()"}
+  {if="empty($username)"}
+    onload="document.loginform.login.focus();"
+  {else}
+    onload="document.loginform.password.focus();"
+  {/if}
+{/if}>
+<div id="pageheader">
+  {include="page.header"}
+
+  <div id="headerform" class="row">
+  <div id="editlinkform" class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 ombre">
+    {if="!ban_canLogin()"}
+      You have been banned from login after too many failed attempts. Try later.
+    {else}
+      <form method="post" name="loginform">
+        <label for="login">Login: <input type="text" id="login" name="login" tabindex="1" class="form-control"
+           {if="!empty($username)"}value="{$username}"{/if}>
+        </label>
+        <br/>
+        <label for="password">Password: <input type="password" id="password" name="password" tabindex="2" class="form-control">
+        </label>
+        <br/>
+        <label for="longlastingsession">
+          <input type="checkbox" name="longlastingsession" id="longlastingsession" tabindex="3">
+          Stay signed in (Do not check on public computers)</label>
+        <input type="hidden" name="token" value="{$token}">
+        {if="$returnurl"}<input type="hidden" name="returnurl" value="{$returnurl}">{/if}
+        <br/>
+        <br/>
+        <input type="submit" value="Login" class="btn btn-success center" tabindex="4">
+      </form>
+    {/if}
+  </div>
+  </div>
+</div>
+
+{include="page.footer"}
+</body>
+</html>

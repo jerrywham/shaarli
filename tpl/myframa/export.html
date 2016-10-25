@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body>
+  <div id="pageheader">
+    {include="page.header"}
+  </div>
+  <div class="container">
+    <div id="headerform" class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 row">
+        <h2 class="h4"><i class="fa fa-fw fa-lg fa-arrow-circle-o-up"></i>Export Netscape html bookmarks</h2>
+        <div id="editlinkform" class="ombre">
+          <div id="toolsdiv">
+            <h3 class="h5">(which can be imported in Firefox, Chrome, Opera, delicious...)</h3>
+            <form method="GET">
+              <input type="hidden" name="do" value="export">
+              Selection:<br>
+              <input type="radio" name="selection" value="all" checked="true"> All<br>
+              <input type="radio" name="selection" value="private"> Private<br>
+              <input type="radio" name="selection" value="public"> Public<br>
+              <br>
+              <input type="checkbox" name="prepend_note_url" id="prepend_note_url">
+              <label for="prepend_note_url">
+                Prepend note permalinks with this Shaarli instance's URL
+                <em>(useful to import bookmarks in a web browser)</em>
+              </label>
+              <br><br>
+              <input class="btn btn-success" type="submit" value="Export">
+            </form>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  {include="page.footer"}
+</body>
+</html>

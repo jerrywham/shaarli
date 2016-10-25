@@ -1,0 +1,858 @@
+<!-- modal Markdown -->
+<a href="#markdownhelp" data-toggle="modal" title="Help for Markdown syntaxe">
+    <i class="fa fa-fw fa-lg fa-question-circle"></i><span class="sr-only">Help for Markdown syntaxe</span>
+</a>
+<div class="modal fade" id="markdownhelp" tabindex="-1" role="dialog" aria-labelledby="markdownHelp" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+         
+<div id="mkdow">
+
+<h2>Quelques mots sur l'utilisation du Markdown</h2>
+<p>L'article original de cette aide se trouve sur le <a href="http://michelf.ca/projets/php-markdown/extra/#nbp-sortie">site de Michel Fortin</a></p>
+<h2>Introduction</h2>
+
+<p>PHP Markdown est une conversion en PHP du programme <a href="http://daringfireball.net/projects/markdown/" onclick="window.open(this.href);return false;">Markdown</a> de John Gruber.</p>
+
+<p>Markdown, c&#8217;est deux choses&#160;: c&#8217;est une syntaxe qui vous permet d&#8217;écrire de façon naturelle en format texte&#160;; c&#8217;est aussi un logiciel qui permet de convertir du texte écrit selon la syntaxe Markdown en code HTML pour la publication sur un site web.</p>
+
+<p>La syntaxe Markdown vous permet d&#8217;écrire naturellement du texte et de lui donner un certain format sans avoir à utiliser de balise HTML. Plus important encore&#160;: en format Markdown, votre texte reste agréable à lire pour un être humain, et c&#8217;est suffisamment vrai pour qu&#8217;un document écrit avec Markdown puisse être publié textuellement, sans modification. Si vous utilisez le courrier électronique en mode texte, vous connaissez déjà certaines parties de la syntaxe.</p>
+
+<p>Visitez la page <a href="http://michelf.ca/projets/php-markdown/concepts/">Concepts</a> pour une courte introduction remplie d&#8217;exemples qui vous apprendra à écrire avec Markdown. Si vous connaissez bien le HTML, vous pouvez aussi consulter la <a href="syntaxe/">syntaxe complète</a> qui explique en détail l&#8217;opération de conversion du texte vers le HTML.</p>
+
+<p>PHP Markdown peut fonctionner en tant que plug-in pour WordPress, en tant que filtre pour le système de patron Smarty, ou en remplacement du filtre Textile dans n&#8217;importe quel logiciel qui supporte Textile, mais aussi, en plugin pour Pluxml, notre cms préféré !!!</p>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=michel%2efortin%40michelf%2ecom&lc=CA&item_name=Michel%20Fortin&item_number=PHP Markdown Extra&no_note=0&currency_code=CAD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHostedGuest" class="money">Faire un don</a>
+
+<p>Ce document introduit les différents concepts qui vous permettront d&#8217;écrire selon la syntaxe Markdown.</p>
+
+<p>Une fois familiarisé avec la syntaxe, une bonne façon d&#8217;apprivoiser Markdown est de s&#8217;entraîner à <a href="http://michelf.ca/projets/php-markdown/banc-d%27essai/">l&#8217;aide du banc d&#8217;essai</a>.</p>
+
+<h2>Paragraphes</h2>
+
+<p>Un paragraphe est constitué d&#8217;une ou plusieurs lignes consécutives de texte, séparées par une ou plusieurs lignes vides&#160;:</p>
+
+<pre><code>Voici un petit paragraphe servant à illustrer le 
+fonctionnement de Markdown. Ce paragraphe s'étend
+sur plus d'une ligne.
+
+Voici un deuxième paragraphe.
+</code></pre>
+
+<p>Ceci donne le résultat suivant&#160;:</p>
+
+<div class="html">
+
+<p>Voici un petit paragraphe servant à illustrer le 
+fonctionnement de Markdown. Ce paragraphe s&#8217;étend
+sur plus d&#8217;une ligne.</p>
+
+<p>Voici un deuxième paragraphe.</p>
+
+</div>
+
+<p>Les sauts de ligne insérés dans le texte disparaissent dans le résultat final&#160;: c&#8217;est le navigateur qui se charge de couper les lignes en fonction de l&#8217;espace disponible. Si vous désirez véritablement forcer un saut de ligne à un certain endroit, vous n&#8217;avez qu&#8217;à insérer <em>deux</em> espaces à la fin de la ligne.</p>
+
+<h2>Emphase</h2>
+
+<p>Vous pouvez mettre en emphase une partie du texte d&#8217;un paragraphe. Il existe deux types d&#8217;emphases&#160;: l&#8217;emphase normale et l&#8217;emphase forte. Sur la plupart des sites web, l&#8217;emphase correspond à du texte en italique, en gras pour l&#8217;emphase forte.</p>
+
+<p>Pour donner de l&#8217;emphase au texte avec Markdown, on utilise les astérisques (<code>*</code>) ou les traits soulignés (<code>_</code>). Entourer du texte d&#8217;un astérisque ou d&#8217;un trait souligné crée une emphase normale, alors qu&#8217;entourer le texte avec deux astérisques ou deux traits soulignés donne une emphase forte&#160;:</p>
+
+<pre><code>*emphase normale avec astérisques*
+
+_emphase normale avec traits soulignés_
+
+**emphase forte avec astérisques**
+
+__emphase forte avec des traits soulignés__
+
+Voici du texte *mis en emphase* avec des astérisques.
+</code></pre>
+
+<p>Ceci donne le résultat&#160;:</p>
+
+<div class="html">
+
+<p><em>emphase normale avec astérisques</em></p>
+
+<p><em>emphase normale avec traits soulignés</em></p>
+
+<p><strong>emphase forte avec astérisques</strong></p>
+
+<p><strong>emphase forte avec des traits soulignés</strong></p>
+
+<p>Voici du texte <em>mis en emphase</em> avec des astérisques.</p>
+
+</div>
+
+<p>Notez bien qu&#8217;il n&#8217;y a aucune différence entre les traits soulignés et les astérisques&#160;: les deux donnent exactement le même résultat. Choisissez la variante qui vous convient le mieux.</p>
+
+<h2>Liens</h2>
+
+<p>Si vous désirez insérer un lien hypertexte à l&#8217;intérieur de votre document, Markdown vous permet de le faire de deux façons. Vous pouvez utiliser un lien <em>incorporé</em> ou <em>par référence</em>.</p>
+
+<p><strong>Le lien incorporé</strong> vous permet de lier du texte à une autre page web. Entourez le texte à lier de [crochets], puis ajoutez l&#8217;adresse entre parenthèses juste après. Comme ceci&#160;:</p>
+
+<pre><code>[Michel Fortin](http://michelf.ca/)
+
+[Michel Fortin](http://michelf.ca/ "Mon site web")
+</code></pre>
+
+<div class="html">
+
+<p><a href="http://michelf.ca/">Michel Fortin</a></p>
+
+<p><a href="http://michelf.ca/" title="Mon site web">Michel Fortin</a></p>
+
+</div>
+
+<p>Le deuxième lien possède un titre (entre guillemets) qui est généralement affiché sous la forme d&#8217;une bulle d&#8217;aide quand vous placez votre curseur au dessus du lien. Le titre est optionnel.</p>
+
+<p><strong>Le lien par référence</strong> fonctionne de la même façon, sauf que vous n&#8217;avez pas à écrire l&#8217;adresse au milieu du paragraphe, ce qui rend le texte plus lisible. À la place, vous donnez un nom au lien et vous écrivez l&#8217;adresse sur une ligne à part &#8212; n&#8217;importe où dans le document. Comme ceci&#160;:</p>
+
+<pre><code>Voici un petit texte écrit par [Michel Fortin][mf].
+
+ [mf]: http://michelf.ca/ "Mon site web"
+</code></pre>
+
+<p>La ligne qui sert à spécifier l&#8217;adresse est retirée du résultat final et le texte devient un lien&#160;:</p>
+
+<div class="html">
+
+<p>Voici un petit texte écrit par <a href="http://michelf.ca/" title="Mon site web">Michel Fortin</a>.</p>
+
+</div>
+
+<p>Encore une fois, le titre du lien (Mon site web) peut être omis.</p>
+
+<h3>Liens automatiques</h3>
+
+<p>Si vous désirez simplement transformer une adresse internet en un lien cliquable, placez l&#8217;adresse entre chevrons et Markdown en fera un lien&#160;:</p>
+
+<pre><code>&lt;http://michelf.ca/&gt;
+
+&lt;michel.fortin@michelf.ca&gt;
+</code></pre>
+
+<div class="html">
+
+<p><a href="http://michelf.ca/">http://michelf.ca/</a></p>
+
+<p><a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#109;&#x69;&#x63;&#104;&#x65;&#108;&#x2e;&#x66;&#111;&#x72;&#116;&#x69;&#x6e;&#64;&#x6d;&#105;&#x63;&#x68;&#101;&#x6c;&#102;&#x2e;&#x63;&#97;">&#109;&#x69;&#x63;&#104;&#x65;&#108;&#x2e;&#x66;&#111;&#x72;&#116;&#x69;&#x6e;&#64;&#x6d;&#105;&#x63;&#x68;&#101;&#x6c;&#102;&#x2e;&#x63;&#97;</a></p>
+
+</div>
+
+<h2>Images</h2>
+<p>Markdown utilise pour les images une syntaxe proche de celle des liens, en autorisant deux styles : en ligne ou par référence.</p>
+<p>Le style en ligne ressemble à cela : </p>
+<pre><code>
+![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Titre optionnel")
+</code></pre>
+<p>C'est à dire :</p>
+<ul>
+  <li>un point d'exclamation !</li>
+  <li>suivi d'une paire de crochets, contenant l'attribut alt pour le texte alternatif de l'image</li>
+  <li>suivis d'une paire de parenthèses, contenant l'URL ou le chemin vers l'image et un titre optionnel entouré de doubles ou simples guillemets</li>
+</ul>
+<p>Le style par référence a la syntaxe suivante:</p>
+<pre><code>
+![Alt text][id]
+</code></pre>
+<p>où “id” est le nom de la référence à l'image. La référence à l'image est définie en utilisant la même syntaxe que pour les liens par référence</p>
+<pre><code>
+[id]: url/to/image  "Optional title attribute"
+</code></pre>
+<p>Comme dans cet exemple, Markdown n'a pas de syntaxe pour préciser les dimensions d'une image; si c'est important pour vous, il suffit d'utiliser la balise HTML standard &lt;img&gt;.</p>
+
+<h2>Titres</h2>
+
+<p>Vous pouvez ajouter des titres et des sous-titres à votre document avec Markdown. Deux syntaxes vous permettent de placer des titres à six niveaux différents. Vous pouvez faire des titres de niveaux 1 et 2 à l&#8217;aide de la syntaxe «&#160;SeText&#160;»&#160;:</p>
+
+<pre><code>Titre 1
+=======
+
+Titre 2
+-------
+</code></pre>
+
+<div class="html">
+
+<h1>Titre 1</h1>
+
+<h2>Titre 2</h2>
+
+</div>
+
+<p>La syntaxe «&#160;atx&#160;» vous permet de créer des titres à tous les niveaux en variant le nombre de dièses&#160;:</p>
+
+<pre><code># Titre 1 #
+
+## Titre 2 ##
+
+###### Titre de niveau 6
+</code></pre>
+
+<div class="html">
+
+<h1>Titre 1</h1>
+
+<h2>Titre 2</h2>
+
+<h6>Titre de niveau 6</h6>
+
+</div>
+
+<p>Vous remarquerez aussi que les dièses à droite du titre sont facultatifs.</p>
+
+<h2>Citation</h2>
+
+<p>Peut-être avez vous déjà observé cette façon d&#8217;indiquer une citation dans une discussion par courrier électronique&#160;:</p>
+
+<pre><code>Une citation sur l'analyse numérique :
+
+&gt; La méthode de différenciation de Richardson est valable
+&gt; non seulement pour la différentiation et l'intégration 
+&gt; numériques, mais aussi pour l'interpolation, la résolution 
+&gt; numérique des équations différentielles.
+</code></pre>
+
+<div class="html">
+
+<p>Une citation sur l&#8217;analyse numérique&#160;:</p>
+
+<blockquote>
+  <p>La méthode de différenciation de Richardson est valable
+  non seulement pour la différentiation et l&#8217;intégration 
+  numériques, mais aussi pour l&#8217;interpolation, la résolution 
+  numérique des équations différentielles.</p>
+</blockquote>
+
+</div>
+
+<p>Vous pouvez placer plusieurs paragraphes à l&#8217;intérieur d&#8217;un bloc de citation. Vous pouvez aussi insérer à l&#8217;intérieur un deuxième niveau de citation, des listes, etc.</p>
+
+<h2>Listes</h2>
+
+<p>Markdown vous permet de créer des listes numérotées (dites ordonnées) ou des listes à pastilles (dites non-ordonnées). Pour créer une liste ordonnée, utilisez un chiffre suivi d&#8217;un point comme marqueur&#160;:</p>
+
+<pre><code>1.  Hiboux
+2.  Choux
+3.  Genoux
+</code></pre>
+
+<div class="html">
+
+<ol>
+<li>Hiboux</li>
+<li>Choux</li>
+<li>Genoux</li>
+</ol>
+
+</div>
+
+<p>Pour créer une liste non-ordonnée, utilisez <code>*</code>, <code>+</code> ou <code>-</code> comme marqueur&#160;:</p>
+
+<pre><code>*   Soleil
+*   Lune
+*   Terre
+</code></pre>
+
+<div class="html">
+
+<ul>
+<li>Soleil</li>
+<li>Lune</li>
+<li>Terre</li>
+</ul>
+
+</div>
+
+<p>Vous pouvez imbriquer des listes en indentant de 4 espaces (ou d&#8217;une tabulation) les listes qui sont au deuxième niveau&#160;:</p>
+
+<pre><code>*   Ingrédients
+    -   Lait
+    -   Oeuf
+*   Recette
+    1.  Mélanger
+    2.  Fouetter
+</code></pre>
+
+<div class="html">
+
+<ul>
+<li>Ingrédients
+
+<ul>
+<li>Lait</li>
+<li>Oeuf</li>
+</ul></li>
+<li>Recette
+
+<ol>
+<li>Mélanger</li>
+<li>Fouetter</li>
+</ol></li>
+</ul>
+
+</div>
+
+<p>Si votre liste contient des paragraphes, laissez une ligne blanche entre les différents éléments de la liste. Pour écrire plusieurs paragraphes sous un même marqueur de liste, assurez vous que les paragraphes supplémentaires sont indentés de 4 espaces (ou une tabulation)&#160;:</p>
+
+<pre><code>1.  Premier paragraphe.
+
+    Deuxième paragraphe.
+
+2.  Un nouvel élément.
+
+3.  Encore un autre.
+</code></pre>
+
+<div class="html">
+
+<ol>
+<li><p>Premier paragraphe.</p>
+
+<p>Deuxième paragraphe.</p></li>
+<li><p>Un nouvel élément.</p></li>
+<li><p>Encore un autre.</p></li>
+</ol>
+
+</div>
+
+<h2>Code</h2>
+
+<h3>Bloc de code</h3>
+
+<p>On écrit un bloc de code en indentant de quatre espaces (ou d&#8217;une tabulation) une section du texte&#160;:</p>
+
+<pre><code>Code pour mettre de l'emphase :
+
+    Selon le &lt;em&gt;HTML&lt;/em&gt; et selon *Markdown*.
+</code></pre>
+
+<p>À l&#8217;intérieur d&#8217;un bloc de code, vous pouvez placer des balises HTML ou du formattage Markdown&#160;; dans les deux cas, la syntaxe ne sera pas interprétée et le texte sera affiché tel quel&#160;:</p>
+
+<div class="html">
+
+<p>Code pour mettre de l&#8217;emphase&#160;:</p>
+
+<pre><code>Selon le &lt;em&gt;HTML&lt;/em&gt; et selon *Markdown*.
+</code></pre>
+
+</div>
+
+<h3>Dans le texte</h3>
+
+<p>Vous pouvez créer une étendue de code dans le texte d&#8217;un paragraphe en utilisant les guillemets obliques (un simple accent grave: <code>`</code>), de cette façon&#160;:</p>
+
+<pre><code>N'utilisez pas la balise `&lt;blink&gt;` sur vos pages web.
+</code></pre>
+
+<p>Ce qui donnera le résultat suivant&#160;:</p>
+
+<div class="html">
+
+<p>N&#8217;utilisez pas la balise <code>&lt;blink&gt;</code> sur vos pages web.</p>
+
+</div>
+
+<h2>HTML</h2>
+
+<p>Vous n&#8217;avez pas à connaître le HTML pour utiliser Markdown. Cependant si vous connaissez certaines balises HTML, vous pouvez en tous temps les intercaler là où vous en avez besoin. Par exemple, pour mettre du texte en exposant &#8212; ce qui n&#8217;est pas couvert par Markdown &#8212; vous pouvez utiliser la balise <code>&lt;sup&gt;</code>&#160;:</p>
+
+<pre><code>Méfions-nous du 1&lt;sup&gt;er&lt;/sup&gt; avril !
+</code></pre>
+
+<p>Markdown passe par dessus la balise sans y toucher et le navigateur la reconnaît et affiche le texte à l&#8217;intérieur en exposant&#160;:</p>
+
+<div class="html">
+<p>Méfions-nous du 1<sup>er</sup> avril&#160;!</p>
+</div>
+
+<p>Certaines balises telles <code>&lt;p&gt;</code> et <code>&lt;div&gt;</code> identifient des blocs de texte. Si vous utilisez ces balises, des règles spéciales s&#8217;appliquent. Voyez la section <a href="michelf.ca/projets/php-markdown/syntaxe/">HTML intercalé</a> de la description de la syntaxe pour plus de détails.</p>
+
+<h2>PHP Markdown Extra</h2>
+
+<p>PHP Markdown Extra est une version spéciale de PHP Markdown comprenant des options qui ne sont pas disponibles nativement dans la syntaxe Markdown. Ce plugin utilise cette version de PHP Markdown Extra. Vous pouvez télécharger PHP Markdown Extra à partir de la <a href="/projets/php-markdown/">page d&#8217;accueil de PHP Markdown</a>.</p>
+
+<p>Ce document explique les changements et les ajouts à la <a href="michelf.ca/projets/php-markdown/syntaxe/">syntaxe Markdown</a> appliqués à PHP Markdown Extra. Vous devrez être déjà familier avec la documentation originale de la syntaxe Markdown avant de lire ce document.</p>
+
+<ul>
+<li><a href="#html">HTML intercalé</a></li>
+<li><a href="#attr-markdown">Markdown dans un bloc HTML</a></li>
+<li><a href="#attr-sup">Attributs supplémentaires</a></li>
+<li><a href="#blocs-de-code-balises">Blocs de code balisés</a></li>
+<li><a href="#tableaux">Tableaux</a></li>
+<li><a href="#liste-def">Listes de définitions</a></li>
+<li><a href="#nbp">Notes de bas de page</a>
+
+<ul>
+<li><a href="#nbp-sortie">Sortie HTML</a></li>
+</ul></li>
+<li><a href="#abreviations">Abréviations</a></li>
+<li><a href="#em">Emphase</a></li>
+<li><a href="#echappement">Échappement par barre oblique inverse</a></li>
+</ul>
+
+<hr />
+
+<h2 id="html">HTML intercalé</h2>
+
+<p>Avec Markdown vous pouvez insérer des balises HTML au milieu de votre texte. C&#8217;est souvent pratique quand vous avez besoin d&#8217;éléments qui ne sont pas accessibles depuis la syntaxe Markdown mais qui sont faciles à écrire en HTML.</p>
+
+<p>Mais Markdown possède une restriction sévère quant au HTML que l&#8217;on introduit. Tiré de la documentation sur la syntaxe:</p>
+
+<blockquote>
+  <p>Les élément HTML représentant un bloc de texte ” c’est à dire <code>&lt;div&gt;</code>, 
+  <code>&lt;table&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;p&gt;</code>, etc. ” doivent être séparés du contenu environnant par des lignes vides, et les balises de début et de fin ne doivent pas êtres indentés avec des tabulations ou des espaces.</p>
+</blockquote>
+
+<p>Ces restrictions sont levées avec PHP Markdown Extra et sont remplacées par deux autres moins restrictives:</p>
+
+<ol>
+<li><p>La balise d&#8217;ouverture d&#8217;un élément bloc ne doit pas être indentée par plus de trois espaces. Toute balise indenté de plus de trois espaces sera traitée en bloc de code tel que défini par la syntaxe normale de Markdown.</p></li>
+<li><p>Quand l&#8217;élément bloc se trouve à l&#8217;intérieur d&#8217;une liste, tout son contenu doit être indenté au même niveau que l&#8217;élément de la liste. (Plus d&#8217;indentation ne causera aucun problème tant que la première balise ouvrante n&#8217;est pas suffisamment indentée pour devenir un bloc de code &#8212; voir la première règle.)</p></li>
+</ol>
+
+<h2 id="attr-markdown">Markdown dans un bloc HTML</h2>
+
+<p>Précédemment avec Markdown, vous ne pouviez pas inclure de texte formaté pour Markdown dans un élément <code>&lt;div&gt;</code>. Parce que <code>&lt;div&gt;</code> est un élément bloc, Markdown ne formate pas son contenu.</p>
+
+<p>PHP Markdown Extra vous donne un moyen de placer du texte formaté pour Markdown dans des éléments bloc. Vous faites cela en ajoutant l&#8217;attribut <code>markdown</code> à la balise avec la valeur <code>1</code>, ce qui donne <code>markdown="1"</code> comme ici:</p>
+
+<pre><code>&lt;div markdown="1"&gt;
+Voici du *vrai* texte Markdown.
+&lt;/div&gt;
+</code></pre>
+
+<p>L&#8217;attribut <code>markdown="1"</code> sera enlevé et le contenu du <code>&lt;div&gt;</code> sera converti en HTML. Le résultat final sera:</p>
+
+<pre><code>&lt;div&gt;
+
+&lt;p&gt;Voici du &lt;em&gt;vrai&lt;/em&gt; texte Markdown.&lt;/p&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>PHP Markdown Extra est suffisamment intelligent pour appliquer le formatage correctement dépendant de l&#8217;élément bloc sur lequel vous placez l&#8217;attribut <code>markdown</code>. Si vous appliquez l&#8217;attribut <code>markdown</code> sur un élément <code>&lt;p&gt;</code> par exemple, seul les éléments de niveau texte seront produits à l&#8217;intérieur &#8212; les listes, les blocs de citation et les blocs de code ne seront pas permis.</p>
+
+<p>Il y a cependant quelques cas qui sont ambigüs, en voici justement un:</p>
+
+<pre><code>&lt;table&gt;
+&lt;tr&gt;
+&lt;td markdown="1"&gt;Voici du *vrai* texte Markdown.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>Une cellule de tableau peut contenir soit des éléments bloc soit directement du texte. Dans un cas comme celui-ci, PHP Markdown Extra produira uniquement les éléments de niveau texte. Si vous voulez permettre les blocs, écrivez <code>markdown="block"</code>.</p>
+
+<h2 id="attr-sup"><span id="titre-id">Attributs spéciaux</a></h2>
+
+<p>Avec PHP Markdown Extra, vous pouvez donner un attribut «&#160;id&#160;» et plusieurs noms de classe (attribut «&#160;class&#160;») à certains éléments en utilisant un bloc d&#8217;attributs spéciaux. Par exemple, on ajoute à un titre l&#8217;identifiant précédé d&#8217;un dièse entre accolades à la fin de la ligne du titre, comme ceci:</p>
+
+<pre><code>Titre 1            {#titre1}
+=======
+
+## Titre 2 ##      {#titre2}
+</code></pre>
+
+<p>Ceci permet de créer des liens vers différentes parties du document de cette façon:</p>
+
+<pre><code>[Lien vers le titre 1](#titre1)
+</code></pre>
+
+<p>Pour ajouter un nom de classe, qui peut servir de référence pour une feuille de style, on utilise le point au début, comme ceci:</p>
+
+<pre><code>## Le site ##      {.principal}
+</code></pre>
+
+<p>On peut combiner un identifiant ainsi que plusieures classes en les plaçant tous dans la même bloc d&#8217;attributs spéciaux&#8217;:</p>
+
+<pre><code>## Le site ##      {.principal .eclat #le-site}
+</code></pre>
+
+<p>Les blocs d&#8217;attributs spéciaux peuvent êtres utilisés seulement avec les titres et les blocs de code balisés.</p>
+
+<h2 id="blocs-de-code-balises">Blocs de code balisés</h2>
+
+<p>La version 1.2 de PHP Markdown Extra ajoute une syntaxe pour les blocs de code sans indentation. Les blocs de code balisés sont comme les blocs de code de Markdown, sauf qu&#8217;ils n&#8217;ont pas d&#8217;indentation et utilisent à la place une ligne balise au début et à la fin pour délimiter le bloc de code. Le bloc de code débute avec une ligne constituée de trois tilde <code>~</code> ou plus, et se termine à la première ligne contenant le même nombre de tilde <code>~</code>. Par exemple:</p>
+
+<pre><code>Voici un paragraphe introduisant:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+un bloc de code d'une ligne
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p>Contrairement à leur équivalent avec indentation, les blocs de code balisés peuvent débuter et se terminer avec des lignes vierges:</p>
+
+<pre><code>~~~
+
+ligne vierge avant
+ligne vierge après
+
+~~~
+</code></pre>
+
+<p>Les blocs de code avec indentation ne peuvent pas être utilisés immédiatement après une liste parce que l&#8217;indentation de la liste prend préséance, mais vous pouvez utiliser un bloc de code balisé à la place:</p>
+
+<pre><code>1.  Élément d'une liste
+
+    Pas un code de bloc indenté, mais un second
+    paragraphe dans l'élément de la liste
+
+~~~
+Ceci est un bloc de code balisé
+~~~
+</code></pre>
+
+<p>Les blocs de code balisés sont aussi idéaux si vous devez copier-coller du code dans un éditeur qui ne supporte pas l&#8217;indentation automatique, tel une boîte de texte dans votre navigateur web.</p>
+
+<p>Vous pouvez aussi spécifier un nom de classe qui s&#8217;appliquera à un bloc de code balisé. Ceci peut être utile si vous voulez donner un style différent aux blocs de code selon le langage. Ou vous pouvez aussi l&#8217;utiliser pour indiquer à un colorieur syntaxique quelle syntaxe utiliser.</p>
+
+<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~ .html
+&lt;p&gt;paragraphe &lt;b&gt;emphase&lt;/b&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p>Le nom de la classe est placé à la suite de la balise de début. Il peut être précédé d&#8217;un point, mais ce n&#8217;est pas obligatoire. Il est aussi possible de d&#8217;utiliser un bloc d&#8217;attributs spéciaux:</p>
+
+<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.html #exemple-1}
+&lt;p&gt;paragraphe &lt;b&gt;emphase&lt;/b&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p>Dans la sortie HTML, les attributs du bloc de code s&#8217;appliquent à l&#8217;élément <code>code</code>; si vous voulez les attributs appliqués à l&#8217;élément <code>pre</code>, réglez la variable <code>MARKDOWN_CODE_ATTR_ON_PRE</code> au début du fichier à <code>true</code>.</p>
+
+<h2 id="tableaux">Tableaux</h2>
+
+<p>PHP Markdown Extra possède sa propre syntaxe pour écrire des tableaux simples. Un tableau «&#160;simple&#160;» ressemble à ceci:</p>
+
+<pre><code>Premier titre | Second titre
+------------- | ------------
+Cellule       | Cellule     
+Cellule       | Cellule     
+</code></pre>
+
+<p>La première ligne contient le titre des colonnes; la deuxième ligne contient une ligne de séparation obligatoire entre les titres et les autres cellules; chaque ligne qui suit représente une rangée du tableau. Les colonnes sont séparées par le caractère ligne verticale (<code>|</code>). Une fois converti en HTML, le résultat est le suivant:</p>
+
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+  &lt;th&gt;Premier titre&lt;/th&gt;
+  &lt;th&gt;Second titre&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td&gt;Cellule&lt;/td&gt;
+  &lt;td&gt;Cellule&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;Cellule&lt;/td&gt;
+  &lt;td&gt;Cellule&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p>Si vous voulez, vous pouvez ajouter une ligne verticale supplémentaire au début et à la fin de chaque ligne du tableau. Pour illustrer, ceci donnera le même résultat que le tableau précédent:</p>
+
+<pre><code>| Premier titre | Second titre |
+| ------------- | ------------ |
+| Cellule       | Cellule      |
+| Cellule       | Cellule      |
+</code></pre>
+
+<p>Note: Un tableau doit avoir <em>au minimum</em> une ligne verticale sur chaque ligne pour que PHP Markdown Extra le lise correctement. Ceci veux dire que la seule façon de créer un tableau à une seule colonne est d&#8217;ajouter une ligne verticale au début ou à la fin (ou les deux) de chaque ligne.</p>
+
+<p>Vous pouvez spécifier un alignement pour chaque colonne en ajoutant des deux-points à la ligne de séparation. Un deux-point à gauche de la ligne signifie que la colonne doit être alignée sur la gauche; un deux-point à droite signifie un alignement à droite; des deux-points de chaque côté signifie que la colonne est centrée.</p>
+
+<pre><code>| Article    | Valeur |
+| ---------- | ------:|
+| Ordinateur | 1600 $ |
+| Téléphone  |   12 $ |
+| Tuyau      |    1 $ |
+</code></pre>
+
+<p>L&#8217;attribut HTML <code>align</code> est appliqué à chaque cellule de la colonne concernée.</p>
+
+<p>Vous pouvez appliquer du formatage de niveau texte à chaque cellule en utilisant la syntaxe Markdown:</p>
+
+<pre><code>| Nom de fonction | Description                    |
+| --------------- | ------------------------------ |
+| `aide()`        | Affiche la fenêtre d'aide.     |
+| `exploser()`    | **Détruit l'ordinateur !**     |
+</code></pre>
+
+<p>PHP Markdown Extra autorise également d'utiliser la syntaxe HTML directement dans le texte. On peut donc utiliser celle des tableaux HTML. Il est possible de fusionner des cellules ou des lignes, en utilisant la syntaxe html, respectivement colspan ou rowspan.</p>
+
+<h2 id="liste-def">Listes de définitions</h2>
+
+<p>PHP Markdown Extra ajoute les listes de définitions. Une liste de définition est composée de termes et de la définition de ces termes, un peu comme dans un dictionnaire.</p>
+
+<p>Une liste de définition simple pour PHP Markdown Extra est composée d&#8217;une ligne contenant un terme suivi par un deux-point et par la définition du terme.</p>
+
+<pre><code>Pomme
+:   Fruit charnu, de forme quasi-sphérique, déprimée au sommet
+ et à la base, à pulpe homogène.
+
+Orange
+:   Fruit de l'oranger, arbre de la famille des Rutacées.
+</code></pre>
+
+<p>Chaque terme doit être séparé de la définition qui le précède par une ligne blanche. Les définitions peuvent s&#8217;étaler sur plusieurs lignes. Dans un tel cas, les lignes devrait être indentées, mais ce n&#8217;est pas vraiment nécessaire: si vous êtes paresseux, vous pouvez oublier d&#8217;indenter une définition qui s&#8217;étale sur plusieurs lignes et ça fonctionnera toujours:</p>
+
+<pre><code>Pomme
+:   Fruit charnu, de forme quasi-sphérique, déprimée au 
+sommet et à la base, à pulpe homogène.
+
+Orange
+:   Fruit de l'oranger, arbre de la famille des Rutacées.
+</code></pre>
+
+<p>Les deux listes de définitions précédentes donnent le même résultat en HTML:</p>
+
+<pre><code>&lt;dl&gt;
+&lt;dt&gt;Pomme&lt;/dt&gt;
+&lt;dd&gt;Fruit charnu, de forme quasi-sphérique, déprimée au sommet 
+et à la base, à pulpe homogène.&lt;/dd&gt;
+
+&lt;dt&gt;Orange&lt;/dt&gt;
+&lt;dd&gt;Fruit de l'oranger, arbre de la famille des Rutacées.&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+
+<p>Les deux-points en tant que marqueur d&#8217;une définition sont généralement accolés sur la marge de gauche, mais peuvent être indentés par un, deux ou trois espaces. Les marqueurs de définition doivent êtres suivis d&#8217;au moins une espace ou d&#8217;une tabulation.</p>
+
+<p>Les termes d&#8217;une liste de définition peuvent avoir plus d&#8217;une définition associée:</p>
+
+<pre><code>Pomme
+:   Fruit charnu, de forme quasi sphérique, déprimée au 
+    sommet et à la base, à pulpe homogène.
+:   Une compagnie d'ordinateur américaine.
+
+Orange
+:   Fruit de l'oranger, arbre de la famille des Rutacées.
+</code></pre>
+
+<p>Vous pouvez aussi associer plusieurs termes à la même définition:</p>
+
+<pre><code>Terme 1
+Terme 2
+:   Définition a
+
+Terme 3
+:   Définition b
+</code></pre>
+
+<p>Si une définition est précédée par une ligne blanche, PHP Markdown Extra l&#8217;enrobera dans une balise <code>&lt;p&gt;</code> dans la sortie HTML. Par exemple, ceci:</p>
+
+<pre><code>Pomme
+
+:   Fruit charnu, de forme quasi-sphérique, déprimée au 
+    sommet et à la base, à pulpe homogène.
+
+Orange
+
+:   Fruit de l'oranger, arbre de la famille des Rutacées.
+</code></pre>
+
+<p>produira cela:</p>
+
+<pre><code>&lt;dl&gt;
+&lt;dt&gt;Pomme&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Fruit charnu, de forme quasi-sphérique, déprimée au 
+sommet et à la base, à pulpe homogène.&lt;/p&gt;
+&lt;/dd&gt;
+
+&lt;dt&gt;Orange&lt;/dt&gt;
+&lt;dd&gt;
+&lt;p&gt;Fruit de l'oranger, arbre de la famille des Rutacées.&lt;/p&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+
+<p>Et tout comme pour les éléments d&#8217;une liste ordonnée ou non-ordonnée, une définition peut contenir plusieurs paragraphes et inclure d&#8217;autres éléments bloc tels que des blocs de citation, des blocs de code, des listes et même d&#8217;autres listes de définition.</p>
+
+<pre><code>Terme 1
+
+:   Voici une définition avec deux paragraphes. Lorem ipsum 
+    dolor sit amet, consectetuer adipiscing elit. Aliquam 
+    hendrerit mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus.
+
+:   Une deuxième définition pour le terme 1, aussi enrobé d'un 
+    paragraphe dû à la ligne blanche qui précède.
+
+Terme 2
+
+:   Cette définition possède un bloc de code, un bloc de citation
+    et une liste.
+
+        bloc de code.
+
+    &gt; bloc de citation
+    &gt; sur deux lignes.
+
+    1.  premier élément d'une liste
+    2.  deuxième élément d'une liste
+</code></pre>
+
+<h2 id="nbp">Notes de bas de page</h2>
+
+<p>Les notes de bas de page fonctionnent de la même façon que les liens par référence. Une note de bas de page comprend deux choses: un marqueur dans le texte qui deviendra un nombre surélevé; une définition de note de bas de page qui sera placée dans une liste comprendant toutes les notes à la fin du document. Une note de bas de page ressemble à ceci:</p>
+
+<pre><code>Un peu de texte avec une note de bas de page.[^1]
+
+[^1]: Et voici la note.
+</code></pre>
+
+<p>Les défintitions de notes de bas de page peuvent se trouver n&#8217;importe où dans le document, mais les notes seront toujours listées dans l&#8217;ordre où elle sont référencées dans le texte. Notez qu&#8217;il est impossible de faire deux liens vers la même note: si vous essayez, la deuxième référence restera sous forme de texte.</p>
+
+<p>Chaque note doit avoir un nom distinct. Le nom sera utilisé pour lier la référence de note à son texte, mais n&#8217;aura pas d&#8217;effet sur la numérotation. Les noms peuvent contenir n&#8217;importe quel caractère valide dans l&#8217;attribut <code>id</code> du HTML.</p>
+
+<p>Les notes de bas de page peuvent contenir des éléments de type bloc, ce qui permet d&#8217;y mettre plusieurs paragraphes, listes, blocs de citation et ainsi de suite dans une note. Cela fonctionne de la même façon que pour les items d&#8217;une liste: vous n&#8217;avez qu&#8217;à indenter les paragraphes qui suivent par quatre espaces dans la définition de la note de bas de page:</p>
+
+<pre><code>Un peu de texte avec une note de bas de page.[^1]
+
+[^1]: Et voici la note.
+
+    Et voilà un deuxième paragraphe.
+</code></pre>
+
+<p>Si vous voulez que les entités soit mieux alignées, vous pouvez laisser la première ligne de la note vide et commencer le premier paragraphe juste au dessous:</p>
+
+<pre><code>[^1]:
+    Et voici la note.
+
+    Et voilà un deuxième paragraphe.
+</code></pre>
+
+<h3 id="nbp-sortie">Sortie</h3>
+
+<p>Un seul format de sortie HTML ne pourra vraisemblablement pas satisfaire tout le monde. Une future version pourrait fournir une interface de programmation permettant de redéfinir le format. Mais pour l&#8217;instant, la sortie est calquée sur <a href="http://daringfireball.net/2005/07/footnotes">le modèle de Daring Fireball</a>, avec quelques petites modifications. Voici la sortie par défaut du premier exemple mentioné plus haut:</p>
+
+<pre><code>&lt;p&gt;Un peu de texte avec une note de bas de page.
+   &lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Et voici la note.
+   &lt;a href="#fnref:1" rev="footnote"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;/ol&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Un peu compliqué, mais dans un navigatueur le résultat ressemble à ça:</p>
+
+<div class="html">
+    <p>Un peu de texte avec une note de bas de page.<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></p>
+
+    <div class="footnotes">
+    <hr />
+    <ol>
+
+    <li id="fn:1">
+    <p>Et voici la note.
+       <a href="#fnref:1" rev="footnote">&#8617;</a></p>
+    </li>
+
+    </ol>
+    </div>
+</div>
+
+<p>Les attributs <code>rel</code> et <code>rev</code> sur les liens expriment la relation qu&#8217;ils ont avec les éléments auxquels ils sont liés. Les liens des références se rendent aux notes (donc <code>rel="footnote"</code>) et, à l&#8217;inverse, les liens de retour partent des notes (donc <code>rev="footnote"</code>). On peut utiliser ces attributs pour appliquer un style aux liens avec les règles suivantes:</p>
+
+<pre><code>a[rel="footnote"]
+a[rev="footnote"]
+</code></pre>
+
+<p>Vous pouvez aussi personnaliser les attributs <code>class</code> et <code>title</code> pour les liens des marqueurs et les liens de retour. Il y a quatre règlages configurables au début du fichier. À l&#8217;intérieur de ces attributs, toute occurence de <code>%%</code> sera remplacée par le numéro de la note courante. Par exemple, vous pourriez utiliser:</p>
+
+<pre><code>define( 'MARKDOWN_FN_LINK_TITLE', "Aller à la note %%." );
+</code></pre>
+
+<h2 id="abreviations">Abréviations</h2>
+
+<p>PHP Markdown Extra ajoute un support pour les abréviations (La balise HTML <code>&lt;abbr&gt;</code>). Ça fonctionne d&#8217;une façon très simple. On définie une abréviation comme ceci:</p>
+
+<pre><code>*[HTML]: Hyper Text Markup Language
+*[ONU]:  Organisation des nations unies
+</code></pre>
+
+<p>et, ailleurs dans le document, on écrit du texte tout à fait normalement:</p>
+
+<pre><code>La spécification HTML
+n'a rien à voir avec l'ONU.
+</code></pre>
+
+<p>et toutes les occurences des termes définis comme abbréviation deviendront:</p>
+
+<pre><code>La spécification &lt;abbr title="Hyper Text Markup Language"&gt;HTML&lt;/abbr&gt;
+n'a rien à voir avec l'&lt;abbr title="Organisation des nations unies"&gt;ONU&lt;/abbr&gt;.
+</code></pre>
+
+<p>Les abréviations sont sensibles à la casse, elle peuvent aussi s&#8217;étendre sur plusieurs mots si définies comme telles. Une abréviation peut aussi avoir une définition vide, dans un tel cas la balise <code>&lt;abbr&gt;</code> sera ajoutée dans le texte mais l&#8217;attribut <code>title</code> sera omis.</p>
+
+<pre><code>L'opération Tigra Genesis avance bien.
+
+*[Tigra Genesis]:
+</code></pre>
+
+<p>Les définitions d&#8217;abréviations peuvent se trouver n&#8217;importe où dans le document. Elles sont retirées du document final.</p>
+
+<h2 id="em">Emphase</h2>
+
+<p>Les règles de l&#8217;emphase ont légèrement changé par rapport à la syntaxe originale de Markdown. Avec PHP Markdown Extra, les traits soulignés au milieu d&#8217;un mot sont maintenant traités en tant que caractères littéraux. L&#8217;emphase par les traits de soulignement ne fonctionne que pour les mots entiers. Si vous voulez placer en emphase seulement une partie d&#8217;un mot, c&#8217;est toujours possible en utilisant les astérisques comme marqueurs d&#8217;emphase.</p>
+
+<p>Par exemple, avec ceci:</p>
+
+<pre><code>Veuillez ouvrir le dossier "boîte_magique_secrète".
+</code></pre>
+
+<p>PHP Markdown Extra ne convertira pas les traits soulignés en emphase parce qu&#8217;ils sont au milieu d&#8217;un mot. Le résultat HTML de PHP Markdown Extra est le suivant:</p>
+
+<pre><code>&lt;p&gt;Veuillez ouvrir le dossier "boîte_magique_secrète".&lt;/p&gt;
+</code></pre>
+
+<p>L&#8217;emphase avec les traits soulignés fonctionne toujours tant que vous placez des mots entiers en emphase, comme ceci:</p>
+
+<pre><code>J'aime ça quand tu me dis _je t'aime_.
+</code></pre>
+
+<p>La même chose s&#8217;applique pour l&#8217;emphase forte: avec PHP Markdown Extra, vous ne pouvez plus placer d&#8217;emphase forte au milieu d&#8217;un mot en utilisant des traits de soulignement, il est nécessaire d&#8217;utiliser des astérisques comme marqueur d&#8217;emphase.</p>
+
+<h2 id="echappement">Échappement par barre oblique inverse</h2>
+
+<p>PHP Markdown Extra ajoute le deux-points (<code>:</code>) et la ligne verticale (<code>|</code>) à la listes des caractères qu&#8217;il est possible d&#8217;échapper avec une barre oblique inverse. Ceci permet d&#8217;éviter que ces caractères forment une liste de définitions ou un tableau.</p>
+
+<hr />
+
+<h2>Remerciements</h2>
+
+<p>Plusieurs idées implantées ici ont été discutées auparavant sur la liste <a href="http://daringfireball.net/projects/markdown/#discussion-list">Markdown Discuss</a>. J&#8217;aimerais remercier tout ceux qui ont participé à la discussion et proposé des solutions et des améliorations à la syntaxe Markdown.</p>
+</div>
+
+ 
+        </div>
+    </div>
+  </div>
+</div>
+<!-- /modal Markdown-->

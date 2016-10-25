@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body>
+
+
+<div id="pageheader" class="row">
+    {include="page.header"}
+</div>
+<div class="container">
+	<h2 class="h4"><i class="fa fa-fw fa-lg fa-sliders"></i>Parameters</h2>
+    <div id="toolsdiv" class="col-sm-10 col-md-12 ombre">
+        <h2>Global parameters</h2>
+        <div class="list-group">
+    		<a class="list-group-item" href="?do=configure"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-cog pull-left"></i>Configure your Shaarli</h2><p class="list-group-item-text">: Change Title, timezone...</p></a>
+    		<br><br>
+    		<a class="list-group-item" href="?do=pluginadmin"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-puzzle-piece pull-left"></i>Plugin administration</h2><p class="list-group-item-text">: Enable, disable and configure plugins.</p></a>
+            <br><br>
+    		{if="!$GLOBALS['config']['OPEN_SHAARLI']"}<a class="list-group-item" href="?do=changepasswd"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-key pull-left"></i>Change password</h2><p class="list-group-item-text">: Change your password.</p></a>
+            <br><br>{/if}
+    		<a class="list-group-item" href="?do=changetag"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-tags pull-left"></i>Rename/delete tags</h2><p class="list-group-item-text">: Rename or delete a tag in all links</p></a>
+            <br><br>
+    		<a class="list-group-item" href="?do=import"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-arrow-circle-o-down pull-left"></i>Import</h2><p class="list-group-item-text">: Import Netscape html bookmarks (as exported from Firefox, Chrome, Opera, delicious...)</p></a>
+            <br><br>
+    		<a class="list-group-item" href="?do=export"><h2 class="h4 list-group-item-heading"><i class="fa fa-fw fa-2x fa-arrow-circle-o-up pull-left"></i>Export</h2><p class="list-group-item-text">: Export Netscape html bookmarks (which can be imported in Firefox, Chrome, Opera, delicious...)</p></a>
+    	</div>
+    	<hr class="trait">
+        <h2>Sharing buttons</h2>
+        <div class="col-sm-3">
+            <p class="text-center">
+                <span class="btn btn-default">
+        		<a href="javascript:(function(){var%20url%20=%20location.href;var%20title%20=%20document.title%20||%20url;window.open('{$pageabsaddr}?post='%20+%20encodeURIComponent(url)+'&title='%20+%20encodeURIComponent(title)+'&description='%20+%20encodeURIComponent(document.getSelection())+'&source=bookmarklet','_blank','menubar=no,height=680,width=700,toolbar=no,scrollbars=no,status=no,dialog=1');})();" onclick="alertBookmarklet();return false;"><b>✚Shaare link</b></a>
+                </span>
+            </p>
+        </div>
+        <div class="col-sm-9">
+            <p class="well">
+				Drag this link to your bookmarks toolbar (or right-click it and choose Bookmark This Link....).<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Then click "✚Shaare link" button in any page you want to share.
+			</p>
+		</div>
+        <div class="col-sm-3">
+            <p class="text-center"><br>
+                <a class="btn btn-default" onclick="alertBookmarklet();" href="{$titleLink}private=1&amp;post="><b>✚Add Note</b></a>
+            </p>
+        </div>
+        <div class="col-sm-9">
+            <p class="well">
+				Drag this link to your bookmarks toolbar (or right-click it and choose Bookmark This Link....).<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Then click "✚Add Note" button anytime to start composing a private Note (text post) to your Shaarli.
+			</p>
+		</div>
+        <div class="col-sm-3">
+            <p class="text-center">
+                <a class="btn btn-default" onclick="activateFirefoxSocial(this)">
+        			<b>✚Add to Firefox<br/>social</b>
+        		</a>
+            </p>
+        </div>
+        <div class="col-sm-9">
+            <p class="well">
+            Click on this button to add Shaarli to the "Share this page" button in Firefox.
+            </p>
+        </div>
+        <hr class="trait">
+        <h2>Plugins parameters</h2>
+            <div class="list-group">
+        		{loop="$tools_plugin"}
+                    {$value}
+                {/loop}
+
+        	</div>
+
+		<div class="clear"></div>
+
+		<script>
+			function activateFirefoxSocial(node) {
+				var loc = location.href;
+				var baseURL = loc.substring(0, loc.lastIndexOf("/"));
+
+				// Keeping the data separated (ie. not in the DOM) so that it's maintainable and diffable.
+				var data = {
+					name: "{$shaarlititle}",
+					description: "The personal, minimalist, super-fast, no-database delicious clone.",
+					author: "Shaarli",
+					version: "1.0.0",
+
+					iconURL: baseURL + "/images/favicon.ico",
+					icon32URL: baseURL + "/images/favicon.ico",
+					icon64URL: baseURL + "/images/favicon.ico",
+
+					shareURL: baseURL + "{noparse}?post=%{url}&title=%{title}&description=%{description}&source=firefoxsocialapi{/noparse}",
+					homepageURL: baseURL
+				};
+				node.setAttribute("data-service", JSON.stringify(data));
+
+				var activate = new CustomEvent("ActivateSocialFeature");
+				node.dispatchEvent(activate);
+			}
+
+			function alertBookmarklet() {
+				alert('Drag this link to your bookmarks toolbar, or right-click it and choose Bookmark This Link...');
+				return false;
+			}
+		</script>
+	</div>
+</div>
+
+{include="page.footer"}
+</body>
+</html>

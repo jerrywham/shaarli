@@ -1,0 +1,248 @@
+#mkdow dd, #mkdow ul, #mkdow ol { padding: 0; margin-left: 2em; }
+#mkdow ul {list-style: circle;}
+#mkdow p {
+    text-align: justify;
+    word-spacing: 0;
+    margin: 2.4ex 0;
+
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+
+    font-variant-numeric: lining-nums;
+}
+
+#mkdow a           { color: #df7000; }
+#mkdow a:active    { color: #e90; }
+#mkdow a img       { border: none; }
+
+#mkdow h1 {
+    font-weight: normal;
+    xfont-style: italic;
+    font-size: 260%;
+    text-shadow: 0px 2px 2px #ddd;
+    line-height: normal;
+}
+* html #mkdow h1 small { font-variant: normal; }
+
+#mkdow h1 small {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-size: 100%;
+    line-height: normal;
+}
+* html #mkdow  h1 small { text-transform: none; font-size: 85%; }
+
+#mkdow a.money {
+    position: absolute;
+    top: 4.9ex; right: 3.1em;
+    
+    line-height: normal;
+    text-decoration: none;
+    font: inherit;
+    font-weight: bold;
+    color: #8cc70e;
+    
+    background: white;
+    border: 1px solid #8cc70e;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 0.5ex 1em 0.2ex 1em;
+    margin: 0;
+    
+    cursor: pointer;
+    display: block;
+}
+* html #mkdow a.money {
+    /*\*/
+    right: 8em;
+    /* */
+}
+#mkdow a.money:hover {
+    background: #efffe8;
+}
+#mkdow a.money:active {
+    color: white;
+    background: #8cc70e;
+}
+
+#mkdow h2 {
+    font-size: 125%;
+    margin-top: 3.5ex;
+    letter-spacing: 0.0em;
+    font: 110% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+#mkdow h3 {
+    font: 90% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 3.5ex;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+#mkdow table {
+    border-collapse: collapse;
+    margin: 1ex 1em;
+    font-variant-numeric: tabular-nums;
+}
+#mkdow th {
+    font: 80% "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 0.5ex;
+    border-bottom: 3px double #ed8;
+    text-align: left;
+}
+#mkdow td {
+    padding-top: 0.7ex;
+}
+#mkdow td,#mkdow  th {
+    padding-right: 3ex;
+}
+
+#mkdow blockquote {
+    border-top:     2px solid #ca9;
+    border-bottom:  2px solid #ca9;
+    margin: 1ex 2em;
+}
+#mkdow blockquote p, #mkdow blockquote p + ol, #mkdow blockquote p + ul {
+    margin: 0.9ex 0;
+}
+#mkdow blockquote em {
+    font-style: normal;
+}
+
+#mkdow pre {
+    color:#696969;
+    background: #fcfaec;
+    border: 1px solid #feeab8;
+    padding: 0.9ex 0.9em;
+    margin: 1ex 0;
+    line-height: inherit;
+    font-family: Inconsolata, Consolas, Courier, monospace; 
+    font-size: 96%;
+    font-size-adjust: 0.45;
+}
+#mkdow code {
+    font-family: Bitstream Vera Sans Mono, Inconsolata, Consolas, Courier, monospace; 
+    font-size: 100%;
+    font-size-adjust: 0.45;
+    line-height: 1.2; /* Only IE Mac can use that. */
+    text-transform: none;
+    letter-spacing: normal;
+    word-spacing: -0.2ex;
+    padding: 0 0.3ex;
+    
+    hyphens: manual;
+    -webkit-hyphens: manual;
+    -moz-hyphens: manual;
+    -ms-hyphens: manual;
+}
+#mkdow pre code {
+    padding: 0;
+    word-spacing: normal;
+}
+
+#mkdow hr {
+    margin: 2ex 0;
+    height: 1px;
+    background: #dcb url(barre-v.gif);
+    color: #dcb;
+    border: none;
+}
+
+
+/* -- Definition lists -- */
+
+#mkdow dl dt {
+    font: 100% "Helvetica Neue", Helvetica, sans-serif;
+    margin: 2ex 0 1ex 0;
+}
+#mkdow dl dt a:first-child, #mkdow dl dt img:first-child + a { margin-right: 0.5em; }
+#mkdow dl dd { margin: 1ex 0 1ex 1.5em; }
+
+
+/* Definition list with icons. */
+
+#mkdow dl.icon-list dt {
+    clear: left;
+    padding-top: 5px;
+}
+#mkdow dl.icon-list dt img {
+    float: left;
+    margin: -5px 1.5em 2.3ex 0;
+    width: 64px;
+    height: 64px;
+    position: relative;
+}
+* html #mkdow dl.icon-list td img {
+    position: relative;
+}
+#mkdow dl.icon-list dd { padding-left: 64px; }
+
+/* -- Notes -- */
+
+#mkdow .note { clear: left; }
+#mkdow p.note, #mkdow .note p { font-style: italic; margin: 2.2ex 0; }
+
+/* -- Sample HTML output box -- */
+
+#mkdow div.html {
+    font: 100% serif;
+    border: 1px dashed #ca9;
+    padding: 1px 0.9em;
+    margin: 1ex 0;
+    line-height: normal;
+    word-spacing: 0;
+}
+#mkdow div.html h1, #mkdow div.html h2, #mkdow div.html h3, 
+#mkdow div.html h4, #mkdow div.html h5, #mkdow div.html h6 {
+    font: bold 100% serif; 
+    font-variant: normal;
+    text-shadow: none;
+    text-transform: none;
+    margin: 1ex 0;
+}
+#mkdow div.html h1 { font-size: 160%; }
+#mkdow div.html h2 { font-size: 145%; }
+#mkdow div.html h3 { font-size: 135%; }
+#mkdow div.html h4 { font-size: 120%; }
+#mkdow div.html h5 { font-size: 110%; }
+#mkdow div.html h6 { font-size: 100%; }
+#mkdow div.html p { text-align: inherit; }
+#mkdow div.html blockquote { border: none; }
+#mkdow div.html code { 
+    word-spacing: inherit;
+    margin: 0;
+}
+#mkdow div.html pre {
+    background: transparent; border: none; 
+    padding: 0; margin: 2.2ex 0;
+}
+#mkdow div.html hr { color: #dcb; background: #dcb; }
+#mkdow div.html dt, #mkdow div.html th {
+    font: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    font-weight: bold;
+}
+#mkdow div.html table { margin: 1.5ex 0; }
+#mkdow div.html td, #mkdow div.html th {
+    padding: 0.5ex 0.5em;
+    border: 1px solid #dcb;
+}
+#mkdow div.html table {
+    border-collapse: collapse;
+    border: 1px solid #dcb;
+}
+#mkdow div.html th[align="right"]  { text-align: right; }
+#mkdow div.html th[align="center"] { text-align: center; }
+#mkdow div.html th[align="left"]   { text-align: left; }
+#mkdow div.html th[align="justify"]{ text-align: justify; }
+#mkdow .important {color:red;}
+
+#mkdow .petit {font-size: 50%;}

@@ -1,0 +1,7 @@
+# Ignore data/, tmp/, cache/ and pagecache/
+data/
+tmp/
+cache/
+pagecache/
+OLD 2013/
+.DS_STORE

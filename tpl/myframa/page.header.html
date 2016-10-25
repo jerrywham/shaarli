@@ -1,0 +1,108 @@
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid ombre">
+    <div class="navbar-header">
+      <a href="#" class="navbar-toggle collapsed"
+        data-toggle="collapse" data-target=".sl-menu"
+        aria-expanded="false">
+        <span class="sr-only">Afficher/masquer le menu</span>
+        <i class="fa fa-fw fa-lg fa-chevron-down"></i>
+      </a>
+        <div id="logo" title="Share your links !" onclick="document.location='?';"></div>
+        <a class="navbar-brand" href="{$titleLink}">{$shaarlititle}</a>
+    </div>
+
+{if="!empty($_GET['source']) && $_GET['source']=='bookmarklet'"}
+    {ignore} When called as a popup from bookmarklet, do not display menu. {/ignore}
+{else}
+
+    <div class="collapse navbar-collapse sl-menu">
+      <ul class="nav navbar-nav">
+        <li><a href="?do=tagcloud" class="btn btn-link">Tags cloud</a></li>
+        <li><a href="?do=daily" class="btn btn-link">Daily</a></li>
+        <li><a href="?do=picwall{$searchcrits}" class="btn btn-link">Pictures wall</a></li>
+        {loop="$plugins_header.buttons_toolbar"}
+            <li>{$value}</li>
+        {/loop}
+      </ul>
+      <ul class="list-inline pull-right navbar-nav navbar-brand">
+        <li><a href="#globalSearch" data-toggle="modal" title="Search">
+          <i class="fa fa-fw fa-lg fa-search"></i><span class="sr-only">Search</span>
+        </a></li>
+        <li class="dropdown paging_linksperpage">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Display options">
+            <i class="fa fa-fw fa-lg fa-eye"></i><span class="sr-only">Display options</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            
+            <li class="dropdown-header">Links per page :</li>
+            <li><a href="?linksperpage=20">20 links</a></li>
+            <li><a href="?linksperpage=50">50 links</a></li>
+            <li><a href="?linksperpage=100">100 links</a></li>
+            <li><form method="GET" class="linksperpage"><input type="text" name="linksperpage" size="2" class="form-control input-sm" placeholder="Your choice…" ></form></li>
+            {if="isLoggedIn()"}
+            <li class="divider"></li>
+            <li>
+              <a href="?privateonly">
+                <i class="fa fa-fw fa-lg fa-toggle-off"></i>
+                See only private links <span class="sr-only">actually disabled</span>
+              </a>
+            </li>
+            {/if}
+          </ul>
+        </li>
+        <li><a href="{$feedurl}?do=rss{$searchcrits}" class="nomobile" title="RSS Feed"><i class="fa fa-fw fa-lg fa-rss"></i><span class="sr-only">RSS Feed</span></a></li>
+        {if="$GLOBALS['config']['SHOW_ATOM']"}
+        <li><a href="{$feedurl}?do=atom{$searchcrits}" class="nomobile" title="ATOM Feed"><i class="fa fa-fw fa-lg fa-rss"></i><span class="sr-only">ATOM Feed</span></a></li>
+        {/if}
+        {if="isLoggedIn()"}
+        <li><a href="?do=tools" title="Tools"><i class="fa fa-fw fa-lg fa-cog"></i><span class="sr-only">Tools</span></a></li>
+        <li><a href="?do=addlink" title="Add link"><i class="fa fa-fw fa-lg fa-plus-circle"></i><span class="sr-only">Add link</span></a></li>
+        <li><a href="?do=logout" title="Logout"><i class="fa fa-fw fa-lg fa-power-off"></i><span class="sr-only">Logout</span></a></li>
+        {elseif="$GLOBALS['config']['OPEN_SHAARLI']"}
+        <li><a href="?do=tools" title="Tools"><i class="fa fa-fw fa-lg fa-cog"></i><span class="sr-only">Tools</span></a></li>
+        <li><a href="?do=addlink" title="Add link"><i class="fa fa-fw fa-lg fa-plus-circle"></i><span class="sr-only">Add link</span></a></li>
+        {else}
+        <li><a href="?do=login" title="Login"><i class="fa fa-fw fa-lg fa-sign-in"></i><span class="sr-only">Login</span></a></li>
+        {/if}
+{/if}
+      </ul>
+    </div>
+    </div>
+</nav>
+
+
+{if="!empty($plugin_errors) && isLoggedIn()"}
+    <ul class="errors">
+        {loop="plugin_errors"}
+            <li>{$value}</li>
+        {/loop}
+    </ul>
+{/if}
+
+<!-- modal globalSearch -->
+<div class="modal fade" id="globalSearch" tabindex="-1" role="dialog" aria-labelledby="globalSearchLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form method="GET" class="searchform" name="searchform">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <input type="search" id="searchform_value" class="form-control input-lg awesomplete" name="searchterm"
+            placeholder="Search…" autocomplete="off" data-multiple data-minChars="1" data-autofirst
+            
+            data-list="{loop="$tags"}{$key}, {/loop}"
+          >
+        </div>
+
+        <div class="modal-footer text-right">
+          <button type="button" id="button-filter" class="btn btn-lg btn-default" onclick="location.href = '?searchtags='+document.getElementById('searchform_value').value">Filter by tag</button>
+          <button type="submit" id="button-search" value="Rechercher" class="btn btn-lg btn-primary">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- /modal globalSearch -->

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body onload="document.uploadform.filetoupload.focus();">
+<div id="pageheader">
+	{include="page.header"}
+</div>
+<div class="container">
+    <div id="headerform" class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 row">
+        <h2 class="h4"><i class="fa fa-fw fa-lg fa-arrow-circle-o-down"></i>Import Netscape HTML bookmarks</h2>
+        <div id="editlinkform" class="ombre">
+			<div id="uploaddiv">
+			<h3 class="h5">(as exported from Firefox/Chrome/Opera/Delicious/Diigo...)<br/>(Max: {$maxfilesize} bytes).</h3>
+			<form method="POST" action="?do=upload" enctype="multipart/form-data" name="uploadform" id="uploadform">
+			    <input type="hidden" name="token" value="{$token}">
+			    <input type="file" name="filetoupload">
+			    <input type="hidden" name="MAX_FILE_SIZE" value="{$maxfilesize}">
+			    <br/>
+			    <input type="submit" name="import_file" value="Import" class="btn btn-success">
+			    <br/>
+			    <br/>
+			    <input type="checkbox" name="private" id="private"><label for="private">&nbsp;Import all links as private</label><br/>
+			    <input type="checkbox" name="overwrite" id="overwrite"><label for="overwrite">&nbsp;Overwrite existing links</label>
+			</form>
+			</div>
+
+        </div>
+    </div>
+</div>
+{include="page.footer"}
+</body>
+</html>

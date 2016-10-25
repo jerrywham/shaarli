@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>{include="includes"}</head>
+<body>
+	<div id="pageheader">{include="page.header"}</div>
+<div class="container">
+    <div id="plugin_zone_start_tagcloud" class="plugin_zone">
+        {loop="$plugin_start_zone"}
+            {$value}
+        {/loop}
+    </div>
+
+    <div id="cloudtag">
+        {loop="tags"}
+            <span class="link-tag"><a
+                href="?searchtags={$key|urlencode}" style="font-size:{$value.size}em;">{$key}</a>
+                <span class="badge">{$value.count}</span>
+            </span>
+            {loop="$value.tag_plugin"}
+                {$value}
+            {/loop}
+        {/loop}
+    </div>
+
+    <div id="plugin_zone_end_tagcloud" class="plugin_zone">
+        {loop="$plugin_end_zone"}
+            {$value}
+        {/loop}
+    </div>
+</div>
+{include="page.footer"}
+</body>
+</html>
