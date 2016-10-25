@@ -110,7 +110,7 @@ and [pull requests](https://github.com/shaarli/Shaarli/pulls)
 
 ### Theme "MyFrama"
 This theme is derivated from [the one created by framasoft staff](https://my.framasoft.org/) [JosephK](http://framacloud.org/cultiver-son-jardin/installation-de-shaarli/).
-Writing this line, I see that [the sources are available at](https://framagit.org/framasoft/myframa/#). So you have the choice to use my version or JosephK version.
+Writing this line, I see that [the sources are available at](https://framagit.org/framasoft/myframa/#) https://framagit.org/framasoft/myframa/#. So you have the choice to use my version or JosephK version.
 
 To use mine, in config.php file, you have to add `$GLOBALS['config']['RAINTPL_TPL'] = 'tpl/myframa/';`.
 
